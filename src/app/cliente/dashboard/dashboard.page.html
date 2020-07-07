@@ -1,0 +1,261 @@
+<ion-header>
+  <ion-toolbar color="principal">
+    <ion-title>
+      <ion-icon name="location"></ion-icon> Rotas SIP
+    </ion-title>
+    <ion-buttons (click)="desconectar()" slot="end">
+      <ion-button>
+        <ion-icon style="font-size: 25px;" slot="end" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Icon only -->
+  <ion-toolbar slot="fixed" color="principal">
+    <ion-segment [(ngModel)]="segmento" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="home">
+        <ion-icon name="home"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="newspaper">
+        <ion-icon name="newspaper"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="calendar">
+        <ion-icon name="calendar"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="notifications">
+        <ion-icon name="notifications"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+  <ng-container *ngIf="segmento === 'home'">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div style="margin-top: 50px;"  class="slides-banner">
+            <ion-slides class="slide-padding" pager="true" [options]="slideOpts">
+              <ion-slide *ngFor="let story of itens">
+                <div class="container" (click)="ver_anuncios_link(story)">
+                  <img [src]="story.image">
+                </div>
+              </ion-slide>
+            </ion-slides>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div style="margin-top: -20px" class="ion-margin-top toda-div-tipo">
+      <ng-container *ngFor="let i of tipos">
+        <div class="bloco-icone-texto">
+          <div (click)="ver_detalhes_categorias(i)" class="individual-tipo">
+            <h2 class="ion-text-center font-withe">
+              <ion-icon [name]="i.icone"></ion-icon>
+            </h2>
+          </div>
+          <p class="ion-text-center font-10 truncate-nome">{{i.nome}}</p>
+        </div>
+      </ng-container>
+
+    </div>
+
+    <ion-row>
+      <ion-col>
+        <hr style="background-color: #CCC; height: 1px;">
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: -10px;">
+      <ion-col size="9">
+        <h3 class="titulo-h3">Locais em destaque</h3>
+      </ion-col>
+      <ion-col size="3">
+        <p (click)="ver_todos_locais()" class="ion-text-end link-p" style="color:rgb(124, 123, 123);">Ver todos</p>
+      </ion-col>
+    </ion-row>
+
+    <div style="margin-top: -16px" class="empresas-destaque">
+      <ion-card class="list-empresas" *ngFor="let e of empresas" (click)="detalhar_local(e)">
+        <img src="{{e.imagem}}" alt="">
+        <ion-card-header>
+          <ion-card-subtitle>{{e.celular}}</ion-card-subtitle>
+          <ion-card-title style="font-size: 15px">{{e.nome}}</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </div>
+    <div class="ion-margin">
+      <ion-button (click)="add_local()" class="btn-dash" shape="round" color="principal" expand="block">Quero adicionar
+        um local
+      </ion-button>
+    </div>
+    <ion-row>
+      <ion-col>
+        <hr style="background-color: #CCC; height: 1px;">
+      </ion-col>
+    </ion-row>
+
+    <div class="cupertino-pane">
+      <h3 class="titulo-h3">Saiba mais sobre nossa iniciativa</h3>
+      <div class="content">
+        <p style="color:rgb(124, 123, 123)" class="ion-text-justify desc-p">
+          Este projeto é um esforço voluntário e coletivo dos alunos do curso Técnico em Informática da escola Albertina
+          Leitão, supervisionado pelos professores Akira Iwanaga e Rilson Lima, juntamente com o desenvolvedor e ex
+          aluno
+          Matheus Soares, com a elaboração de um projeto de ensino e extensão visando proporcionar aos moradores e
+          visitantes de Santa
+          Izabel do Pará um aplicativo como guia turístico, promovendo o seu potencial valor de comércio, lazer e
+          turismo.
+        </p>
+
+        <ion-col style="margin-top: -15px">
+          <ion-button class="btn-dash" fill="outline" shape="round" (click)="historia()" color="dark" expand="block">
+            Conheça a
+            história de SIP</ion-button>
+        </ion-col>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="segmento === 'newspaper'">
+    <div style="margin-top: 50px;">
+      <ion-grid>
+        <ion-row *ngFor="let news of news.articles">
+          <ion-col>
+            <ion-card>
+              <img
+                [src]="news.urlToImage || 'http://www.publicengagement.ac.uk/sites/default/files/styles/content_width/public/hero/large-crowd-of-people-small.jpg'">
+              <ion-card-header>
+                <ion-card-subtitle>{{news?.author}}</ion-card-subtitle>
+                <ion-card-title style="font-size: 15px;">{{news?.title}}</ion-card-title>
+              </ion-card-header>
+
+              <ion-card-content>
+                {{news?.description}}
+              </ion-card-content>
+              <ion-card-content>
+                <ion-row>
+                  <ion-col size="6">
+                    <ion-button href="{{news?.url}}" color="principal" expand="block">Visualizar</ion-button>
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-button (click)="compartilhar_news(news)" color="light" expand="block">Compartilhar</ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="segmento === 'calendar'">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div style="margin-top: 50px;">
+            <ion-segment color="principal" [(ngModel)]="evento_segmento" (ionChange)="eventos_change($event)">
+              <ion-segment-button value="todos_eventos">
+                <ion-label>Todos</ion-label>
+              </ion-segment-button>
+              <ion-segment-button value="meus_eventos">
+                <ion-label>Meus Eventos</ion-label>
+              </ion-segment-button>
+            </ion-segment>
+          </div>
+        </ion-col>
+        <ion-searchbar placeholder="Pesquisar" (ionInput)="pesquisar_eventos($event)"></ion-searchbar>
+        <ion-row *ngIf="eventos.length == 0">
+          <ion-card>
+            <img src="../../../assets/img/search.png" alt="">
+            <p class="ion-text-center">Não há itens a serem mostrados</p>
+          </ion-card>
+        </ion-row>
+
+      </ion-row>
+      <ion-row *ngFor="let i_eve of eventos">
+        <ion-col>
+          <ion-card>
+            <img src="{{i_eve?.image}}">
+            <ion-card-header>
+              <ion-card-subtitle style="font-size: 13px;">
+                <p style="font-weight: bold; color: #7c7878;" *ngIf="!i_eve.ativo">
+                  <ion-icon style="font-size: 18px;" name="help-circle"></ion-icon>
+                  &nbsp;
+                  <span class="ion-text-uppercase">Aguardando Aprovação</span>
+                </p>
+              </ion-card-subtitle>
+              <ion-card-subtitle style="font-size: 15px;">
+                <p style="font-weight: bold;">
+                  <ion-icon name="calendar"></ion-icon> &nbsp; {{i_eve?.data_consulta}} <b *ngIf="i_eve.hora_evento">às
+                    {{ i_eve.hora_evento | date:'hh:mm' }}</b>
+                </p>
+              </ion-card-subtitle>
+              <ion-card-title style="font-size: 15px;" class="ion-text-uppercase">
+                <ion-icon name="create" style="font-weight: bold; color: #7c7878;"></ion-icon> {{i_eve?.nome}}
+              </ion-card-title>
+            </ion-card-header>
+
+            <!-- <ion-card-content>
+              {{i_eve?.descricao}}
+            </ion-card-content> -->
+            <ion-card-content *ngIf="i_eve.ativo">
+              <ion-row>
+                <ion-col size="6">
+                  <ion-button (click)="visualizar_evento(i_eve)" color="principal" expand="block">
+                    Visualizar
+                  </ion-button>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-button (click)="compartilhar_evento(i_eve)" color="light" expand="block">
+                    Compartilhar
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+              <ion-row *ngIf="usuario == i_eve.key_user">
+                <ion-col>
+                  <ion-button (click)="editar_evento(i_eve)" color="dark" expand="block">
+                    Atualizar
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+
+            <ion-card-content *ngIf="!i_eve.ativo">
+              <ion-row>
+                <ion-col size="6">
+                  <ion-button (click)="visualizar_evento(i_eve)" color="principal" expand="block">
+                    Visualizar
+                  </ion-button>
+                </ion-col>
+                <ion-col size="6" *ngIf="usuario == i_eve.key_user">
+                  <ion-button (click)="editar_evento(i_eve)" color="dark" expand="block">
+                    Atualizar
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- fab placed to the bottom end -->
+    <ion-fab (click)="add_evento()" vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button color="principal">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ng-container>
+
+  <ng-container *ngIf="segmento === 'notifications'">
+    <h4 style="margin-top: 30px;">Notificações</h4>
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      </ion-avatar>
+      <ion-label>Conta criada com sucesso!</ion-label>
+    </ion-item>
+  </ng-container>
+</ion-content>

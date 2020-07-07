@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Adicionar Usuários</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-row>
+          <ion-col>
+            <ion-card *ngIf="!logomarca" (click)="logo()">
+              <p class="ion-text-center">
+                <ion-icon style="font-size: 50px;" name="images"></ion-icon>
+              </p>
+              <h4 class="ion-text-center"> Adicionar Foto</h4>
+            </ion-card>
+
+            <ion-card *ngIf="logomarca" class="width-100">
+              <img id="logo" [src]="logomarca || 'https://image.flaticon.com/icons/svg/1999/1999101.svg'">
+              <ion-button fill="outline" class="btn-45" (click)="logo()" color="primary" expand="block">Alterar Foto
+              </ion-button>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Perfil</ion-label>
+            <ion-select formControlName="perfil" placeholder="Selecione" okText="Selecionar" cancelText="Cancelar">
+              <ion-select-option value="administrador">Administrador</ion-select-option>
+              <ion-select-option value="comum">Usuário Comum</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>        
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Nome Completo</ion-label>
+            <ion-input type="text" formControlName="firstName"
+              [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"></ion-input>
+            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+              <div *ngIf="f.firstName.errors.required">First Name is required</div>
+            </div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">E-mail</ion-label>
+            <ion-input type="email" formControlName="email"
+              [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"></ion-input>
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Email is required</div>
+              <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+            </div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Senha</ion-label>
+            <ion-input type="password" formControlName="password"
+              [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"></ion-input>
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">Password is required</div>
+              <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Confirmar Senha</ion-label>
+            <ion-input type="password" formControlName="confirmPassword"
+              [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"></ion-input>
+            <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+              <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+              <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+            </div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button shape="round" class="btn-45 bg-primary-outline" type="submit" [disabled]="registerForm.invalid"
+            color="primary" expand="block">Criar Conta
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>

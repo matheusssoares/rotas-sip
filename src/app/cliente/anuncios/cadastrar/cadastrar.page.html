@@ -1,0 +1,152 @@
+<ion-header>
+  <ion-toolbar color="principal">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cadastrar Anúncio</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-toolbar>
+          <ion-segment [(ngModel)]="dados.tipo" (ionChange)="segmentChanged($event)" color="principal">
+            <ion-segment-button value="produtos">
+              <ion-label>Produtos</ion-label>
+              <ion-icon name="basket"></ion-icon>
+            </ion-segment-button>
+            <ion-segment-button value="servicos">
+              <ion-label>Serviços</ion-label>
+              <ion-icon name="hammer"></ion-icon>
+            </ion-segment-button>
+            <ion-segment-button value="empregos">
+              <ion-label>Empregos</ion-label>
+              <ion-icon name="briefcase"></ion-icon>
+            </ion-segment-button>
+          </ion-segment>
+        </ion-toolbar>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-row>
+          <ion-col>
+            <ion-card *ngIf="!logomarca" (click)="logo()">
+              <p class="ion-text-center">
+                <ion-icon style="font-size: 50px;" name="images"></ion-icon>
+              </p>
+              <h4 class="ion-text-center"> Adicionar Foto</h4>
+            </ion-card>
+
+            <ion-card *ngIf="logomarca" class="width-100">
+              <img id="logo" [src]="logomarca || 'https://image.flaticon.com/icons/svg/1999/1999101.svg'">
+              <ion-button fill="outline" class="btn-45" (click)="logo()" color="principal" expand="block">Foto Principal
+              </ion-button>
+            </ion-card>
+          </ion-col>
+        </ion-row>                
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Título do Anúncio</ion-label>
+          <ion-input [(ngModel)]="dados.nome"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="dados.tipo == 'produtos'">
+      <ion-col>
+        <ion-item>
+          <ion-label>Categoria</ion-label>
+          <ion-select [(ngModel)]="dados.categoria" placeholder="Selecione"
+            okText="Selecionar" cancelText="Cancelar">
+            <ion-select-option value="Casa e Jardim">Casa e Jardim</ion-select-option>
+            <ion-select-option value="Classificados">Classificados</ion-select-option>
+            <ion-select-option value="Eletrônicos">Eletrônicos</ion-select-option>
+            <ion-select-option value="Entretenimento">Entretenimento</ion-select-option>
+            <ion-select-option value="Família">Família</ion-select-option>
+            <ion-select-option value="Hobbies">Hobbies</ion-select-option>
+            <ion-select-option value="Roupas e Acessórios">Roupas e Acessórios</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="dados.tipo == 'servicos'">
+      <ion-col>
+        <ion-item>
+          <ion-label>Categoria</ion-label>
+          <ion-select [(ngModel)]="dados.categoria" placeholder="Selecione"
+            okText="Selecionar" cancelText="Cancelar">
+            <ion-select-option value="Babá">Babá</ion-select-option>
+            <ion-select-option value="Eventos / Festas">Eventos / Festas</ion-select-option>
+            <ion-select-option value="Informática">Informática</ion-select-option>
+            <ion-select-option value="Outros">Outros</ion-select-option>
+            <ion-select-option value="Profissionais Liberais">Profissionais Liberais</ion-select-option>
+            <ion-select-option value="Reforma / Conserto">Reforma / Conserto</ion-select-option>
+            <ion-select-option value="Saúde / Beleza">Saúde / Beleza</ion-select-option>
+            <ion-select-option value="Serviço Doméstico">Serviço Doméstico</ion-select-option>
+            <ion-select-option value="Transportes / Fretes"> Transportes / Fretes</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="dados.tipo == 'empregos'">
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Área de Atuação</ion-label>
+          <ion-input [(ngModel)]="dados.area" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="dados.tipo == 'produtos'">
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Preço</ion-label>
+          <ion-input [(ngModel)]="dados.preco"
+            [brmasker]="{money: true, thousand: '.',  decimalCaracter: ',', decimal: '2'}"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">WhatsApp </ion-label>
+          <ion-input type="tel" [(ngModel)]="dados.whatsapp" [brmasker]="{phone: true}"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Autor</ion-label>
+          <ion-input type="text" [(ngModel)]="dados.autor" readonly></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Descrição</ion-label>
+          <ion-textarea [(ngModel)]="dados.descricao"></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-button class="btn-login" color="principal" (click)="cadastrar(dados)" expand="block">Cadastrar</ion-button>
+  </ion-grid>
+
+</ion-content>

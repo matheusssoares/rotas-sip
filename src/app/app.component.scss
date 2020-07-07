@@ -1,0 +1,31 @@
+.sem-padding{
+    padding: 0;  
+} 
+.menu {
+    padding: 0;
+    background-image: url('../assets/img/bg-menu.jpg');
+    //background-image: url('../assets/img/bg-menu.jfif');
+    //background-image: url('../assets/img/img-menu.png');
+    background-size: cover;
+    background-position: center;
+    padding: 0;
+    height: 220px;
+}
+.foto-perfil {
+    height: 100px;
+    width: 80px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 15px;
+}
+.option {
+    width: 100%;
+    height: auto;
+    background-color: #FFF;
+}
+
+.head {
+    background-color: rgb(243, 241, 241);
+    padding: 20px;
+}

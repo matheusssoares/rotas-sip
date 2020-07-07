@@ -1,0 +1,191 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Atualizar Eventos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-row>
+          <ion-col>
+            <ion-card class="width-100">
+              <img id="logo" [src]="dados?.image || 'https://image.flaticon.com/icons/svg/1999/1999101.svg'">
+              <ion-button fill="outline" class="btn-45" (click)="logo()" color="primary" expand="block">Foto Principal
+              </ion-button>
+            </ion-card>
+          </ion-col>
+        </ion-row>        
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>STATUS</ion-label>
+          <ion-toggle mode="ios" [(ngModel)]="dados.ativo"></ion-toggle>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Título do Evento</ion-label>
+          <ion-input [(ngModel)]="dados.nome"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="floating">Data do Evento</ion-label>
+          <ion-datetime cancelText="Cancelar" displayFormat="DD/MM/YYYY" doneText="Confirmar"  [min]="hoje" max="2030-12-31" [(ngModel)]="dados.data_evento"></ion-datetime>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="floating">Hora de Início</ion-label>
+          <ion-datetime [(ngModel)]="dados.hora_evento" cancelText="Cancelar" doneText="Confirmar"
+            displayFormat="HH:mm"></ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Local do Evento</ion-label>
+          <ion-input [(ngModel)]="dados.local"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Tipo de Evento</ion-label>
+          <ion-select (ionChange)="alterou($event)" [(ngModel)]="dados.tipo_evento" placeholder="Selecione"
+            okText="Selecionar" cancelText="Cancelar">
+            <ion-select-option value="free">Público</ion-select-option>
+            <ion-select-option value="premium">Privado</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="ctrl_ingresso">
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Valor do Ingresso</ion-label>
+          <ion-input [(ngModel)]="dados.ingresso"
+            [brmasker]="{money: true, thousand: '.',  decimalCaracter: ',', decimal: '2'}"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">WhatsApp </ion-label>
+          <ion-input type="tel" [(ngModel)]="dados.whatsapp" [brmasker]="{phone: true}"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Organizador</ion-label>
+          <ion-input type="url" [(ngModel)]="dados.organizador"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Descrição do evento</ion-label>
+          <ion-textarea [(ngModel)]="dados.descricao"></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <div class="option">
+        <div *ngIf="!display_end" (click)="mostrar_end()" class="head">
+          LOCALIZAÇÃO
+          <ion-icon style="float: right;" class="ion-text-right" name="caret-down"></ion-icon>
+        </div>
+
+        <div *ngIf="display_end" (click)="esconder_end()" class="head">
+          LOCALIZAÇÃO
+          <ion-icon style="float: right;" class="ion-text-right" name="caret-up"></ion-icon>
+        </div>
+
+        <div *ngIf="display_end">
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label>País</ion-label>
+                <ion-select [(ngModel)]="dados.pais" disabled="true" cancelText="Cancelar" okText="Confirmar">
+                  <ion-select-option value="Brasil">Brasil</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label position="floating">Estado</ion-label>
+                <ion-input [(ngModel)]="dados.estado" readonly></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item>
+                <ion-label position="floating">Cidade</ion-label>
+                <ion-input [(ngModel)]="dados.cidade" readonly></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label position="floating">Endereço</ion-label>
+                <ion-textarea [(ngModel)]="dados.rua"></ion-textarea>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label position="floating">Bairro</ion-label>
+                <ion-input [(ngModel)]="dados.bairro"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5">
+              <ion-item>
+                <ion-label position="floating">Número</ion-label>
+                <ion-input [(ngModel)]="dados.num"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size="7">
+              <ion-item>
+                <ion-label position="floating">CEP</ion-label>
+                <ion-input [(ngModel)]="dados.cep" readonly></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </div>
+      </div>
+    </ion-row>
+
+    <ion-button class="btn-login" color="primary" (click)="atualizar(dados)" expand="block">Atualizar</ion-button>
+  </ion-grid>
+</ion-content>

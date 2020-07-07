@@ -1,3 +1,101 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane color="primary" contentId="main-content">
+    <ion-menu color="primary" contentId="main-content" type="overlay">
+      <ion-header>
+        <ion-toolbar color="primary">
+          <div class="menu">
+            <ion-avatar class="foto-perfil">
+              <img src="https://image.flaticon.com/icons/svg/149/149071.svg">
+            </ion-avatar>
+
+            <h2 style="color: #FFF;" class="ion-text-center" color="primary"> <strong>Matheus Soares </strong></h2>
+            <p style="margin-top:-10px;" class="ion-text-center"> matheus@email.com </p>
+            <p class="ion-text-center">
+              <ion-button (click)="signOut()" size="small" shape="round" color="light" fill="outline">
+                Desconectar
+                <ion-icon slot="end" name="log-out"></ion-icon>
+              </ion-button>
+            </p>
+            <!-- <img class="sem-padding img-menu" src="../assets/img/img-menu.png" alt=""> -->
+          </div>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content color="primary">
+        <ion-list class="sem-padding">
+          <ion-menu-toggle auto-hide="false">
+            <ion-item lines="none" color="primary" (click)="dashboard()">
+              <ion-icon slot="start" name="home"></ion-icon>
+              <ion-label>
+                Dashboard
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false">
+            <ion-item lines="none" color="primary" (click)="tipos()">
+              <ion-icon slot="start" name="pricetags"></ion-icon>
+              <ion-label>
+                Tipos de Estabelecimentos
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false">
+            <ion-item lines="none" color="primary" (click)="estabelecimentos()">
+              <ion-icon slot="start" name="location"></ion-icon>
+              <ion-label>
+                Estabelecimentos
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false">
+            <ion-item lines="none" color="primary" (click)="noticias()">
+              <ion-icon slot="start" name="newspaper"></ion-icon>
+              <ion-label>
+                Notícias
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false">
+            <ion-item lines="none" color="primary" (click)="eventos()">
+              <ion-icon slot="start" name="calendar"></ion-icon>
+              <ion-label>
+                Eventos
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false">
+            <ion-item lines="none" color="primary" (click)="anuncios()">
+              <ion-icon slot="start" name="megaphone"></ion-icon>
+              <ion-label>
+                Anúncios
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false">
+            <ion-item lines="none" color="primary" (click)="usuarios()">
+              <ion-icon slot="start" name="people"></ion-icon>
+              <ion-label>
+                Usuários
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false">
+            <ion-item lines="none" color="primary" (click)="config()">
+              <ion-icon slot="start" name="notifications"></ion-icon>
+              <ion-label>
+                Notificações
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>

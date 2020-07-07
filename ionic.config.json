@@ -1,5 +1,7 @@
 {
   "name": "rota-sip",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

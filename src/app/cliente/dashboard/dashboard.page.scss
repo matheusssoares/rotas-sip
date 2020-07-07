@@ -1,0 +1,151 @@
+//geral
+.titulo-h3 {
+   font-size: 18px;
+}
+.link-p {
+   font-size: 12px;
+}
+
+.container img {
+   height: 170px;
+   width: 100%;
+}
+
+ion-slides {
+   --bullet-background: rgb(255, 231, 231);
+   --bullet-background-active: #ccc;
+}
+
+.empresas-destaque {
+   width: 100%;
+   height: auto;
+   background-color: #fff;
+   overflow-x: scroll;
+   overflow-y: hidden;
+   white-space: nowrap;
+}
+
+.list-empresas {
+   display: inline-block;
+   background-color: #fff;
+   width: 250px;
+}
+
+.list-empresas img {
+   width: 100%;
+   height: 150px;
+}
+
+.cupertino-pane {
+   margin: 20px;
+}
+.btn-dash {
+   font-size: 15px;
+   height: 45px;
+}
+
+//tipos
+.toda-div-tipo {
+   overflow-x: scroll;
+   overflow-y: hidden;
+   white-space: nowrap;
+}
+.bloco-icone-texto {
+   display: inline-block;
+   margin: 5px;
+   width: 60px;
+}
+
+.individual-tipo {
+   background-color: var(--ion-color-principal);
+   border-radius: 50%;
+   width: 60px;
+   height: 60px;
+}
+
+.individual-tipo h2 {
+   text-align:center; padding:16px 0 17px 0;
+}
+/* 
+.individual-tipo h2 {
+   padding-top: 10px;
+} */
+.font-10 {
+   font-size: 10px;
+}
+.font-withe {
+   color: #fff;
+}
+.truncate-nome {
+   width: 60px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.link-p {
+   margin-top: 21px;
+}
+ion-button {
+   font-size: 10px;
+}
+.btn-dash {
+   font-size: 13px;
+   height: 40px;
+}
+.desc-p {
+   font-size: 15px;
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+   //CSS
+   .titulo-h3 {
+      font-size: 20px;
+   }
+}
+@media (min-width: 401) and (max-width: 480px){
+   .titulo-h3 {
+      font-size: 20px;
+   }
+   .link-p {
+      font-size: 12px;
+   }
+   /* .individual-tipo h2 {
+      padding-top: 18px;
+   } */
+}
+@media (min-width: 321px) and (max-width: 400px) {
+   //CSS
+   .titulo-h3 {
+      font-size: 20px;
+   }
+   .link-p {
+      font-size: 12px;
+   }
+   /* .individual-tipo h2 {
+      padding-top: 18px;
+   } */
+
+   .desc-p {
+      font-size: 12px;
+   }
+}
+
+@media (min-width: 300px) and (max-width: 321px) {
+  /*  .individual-tipo h2 {
+      padding-top: 18px;
+   } */
+}
+
+@media (min-width: 240px) and (max-width: 299px){
+   .titulo-h3 {
+      font-size: 15px;
+   }
+   .link-p {
+      font-size: 10px;
+   }
+   /* .individual-tipo h2 {
+      padding-top: 18px;
+   } */
+}
+

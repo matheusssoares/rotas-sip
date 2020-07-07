@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar color="principal">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-uppercase">Detalhes do Evento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="my-node">
+  <ion-card class="ion-no-margin">
+    <img [src]="dados.image" alt="">
+    <ion-card-header>
+      <ion-card-title class="ion-text-uppercase">{{dados.nome}}</ion-card-title>
+      <ion-card-subtitle>
+        <p style="font-weight: bold;">
+          <ion-icon name="calendar"></ion-icon> &nbsp; {{dados?.data_consulta}} <b *ngIf="dados.hora_evento">às
+            {{ dados.hora_evento | date:'hh:mm' }}</b>
+        </p>
+        <ng-container *ngIf="dados.tipo_evento == 'premium'">
+          <p>
+            <ion-icon name="earth"></ion-icon>
+            &nbsp; Particular
+            <b *ngIf="dados.organizador">
+              - {{ dados.organizador }}
+            </b>
+          </p>
+
+          <p *ngIf="dados.ingresso">
+            <ion-icon name="pricetag"></ion-icon>&nbsp;&nbsp; Ingresso <b>
+              - R$ {{ dados.ingresso }}</b>
+          </p>
+        </ng-container>
+
+        <p *ngIf="dados.tipo_evento == 'free'">
+          <ion-icon name="earth"></ion-icon> &nbsp; Público - Organizado por: <b *ngIf="dados.organizador">
+            {{ dados.organizador }}</b>
+        </p>
+
+        <p *ngIf="dados.local" class="ion-text-uppercase">
+          <ion-icon name="location"></ion-icon> &nbsp; {{dados.local}} - <b *ngIf="dados.rua">
+            {{ dados.rua }} - </b>
+          <b *ngIf="dados.bairro">
+            {{ dados.bairro }} -
+          </b>
+          <b *ngIf="dados.cep">
+            {{ dados.cep }} -
+          </b>
+          <b *ngIf="dados.cidade">
+            {{ dados.cidade }} - {{dados.estado}}
+          </b>
+        </p>
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <hr style="height: 1px; background-color: #CCC;">
+    </ion-card-content>
+    <ion-card-content>
+      <h3><b>DESCRIÇÃO:</b></h3>
+      <p>{{dados.descricao}}</p>
+    </ion-card-content>
+    <ion-card-content>
+      <hr style="height: 1px; background-color: #CCC;">
+    </ion-card-content>
+
+    <ion-card-content>
+      <ion-item *ngIf="dados.ativo" (click)="compartilhar(dados)">
+        <ion-icon name="share-social" slot="start"></ion-icon>
+        <ion-label>COMPARTILHAR</ion-label>
+      </ion-item>
+
+      <ion-item (click)="msg(dados)" class="ion-activated">
+        <ion-icon name="logo-whatsapp" slot="start"></ion-icon>
+        <ion-label>ENTRAR EM CONTATO</ion-label>
+      </ion-item>
+
+      <ion-item (click)="navegar(dados)">
+        <ion-icon name="navigate" slot="start"></ion-icon>
+        <ion-label>COMO CHEGAR</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

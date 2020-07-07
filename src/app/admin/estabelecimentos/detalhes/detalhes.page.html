@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ dados?.nome }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <img class="logo" [src]="dados.imagem || 'https://static.vecteezy.com/system/resources/previews/000/357/423/non_2x/shop-vector-icon.jpg'">
+    <ion-card-header>
+      <ion-card-subtitle>{{dados?.tipo}}</ion-card-subtitle>
+      <ion-card-title>{{dados?.nome}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p *ngIf="dados.rua && dados.num" class="ion-text-uppercase"><ion-icon name="location"></ion-icon> {{dados?.rua}}, {{dados?.num}}.</p> 
+      <p *ngIf="dados.url_site" class="ion-text-lowercase"><ion-icon name="earth"></ion-icon> {{dados?.url_site}}</p> 
+    </ion-card-content>
+    <hr>
+    <ion-item (click)="ligar(dados.celular)">
+      <ion-icon name="call" slot="start"></ion-icon>
+      <ion-label>Ligar</ion-label>
+    </ion-item>
+  
+    <ion-item (click)="msg(dados.celular)" class="ion-activated">
+      <ion-icon name="logo-whatsapp" slot="start"></ion-icon>
+      <ion-label>Mandar Mensagem</ion-label>
+    </ion-item>
+  
+    <ion-item (click)="navegar(dados)">
+      <ion-icon name="navigate" slot="start"></ion-icon>
+      <ion-label>Visualizar Rota</ion-label>
+    </ion-item>
+  </ion-card>
+</ion-content>

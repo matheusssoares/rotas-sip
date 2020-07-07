@@ -1,0 +1,142 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Adicionar Estabelecimentos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-card class="width-100">
+        <ion-avatar class="logotipo">
+          <img id="logo"
+            [src]="logomarca || 'https://static.vecteezy.com/system/resources/previews/000/357/423/non_2x/shop-vector-icon.jpg'">
+        </ion-avatar>
+        <ion-button fill="outline" class="btn-45" (click)="logo()" color="primary" expand="block">Foto Principal
+        </ion-button>
+      </ion-card>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Nome do Estabelecimento</ion-label>
+          <ion-input [(ngModel)]="estabelecimento.nome"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Tipo de local</ion-label>
+          <ion-select [(ngModel)]="estabelecimento.tipo" cancelText="Cancelar" okText="Confirmar">
+            <ion-select-option *ngFor="let i of local">{{i.nome}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Contato principal</ion-label>
+          <ion-input type="tel" [(ngModel)]="estabelecimento.celular" [brmasker]="{phone: true}"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">WhatsApp</ion-label>
+          <ion-input type="tel" [(ngModel)]="estabelecimento.whatsapp" [brmasker]="{phone: true}"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Link do Site</ion-label>
+          <ion-input type="url" [(ngModel)]="estabelecimento.url_site"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <div class="option">
+        <div *ngIf="!display_end" (click)="mostrar_end()" class="head">
+          LOCALIZAÇÃO
+          <ion-icon style="float: right;" class="ion-text-right" name="caret-down"></ion-icon>
+        </div>
+
+        <div *ngIf="display_end" (click)="esconder_end()" class="head">
+          LOCALIZAÇÃO
+          <ion-icon style="float: right;" class="ion-text-right" name="caret-up"></ion-icon>
+        </div>
+
+        <div *ngIf="display_end">
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label>País</ion-label>
+                <ion-select [(ngModel)]="estabelecimento.pais" disabled="true" cancelText="Cancelar" okText="Confirmar">
+                  <ion-select-option value="Brasil">Brasil</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label position="floating">Estado</ion-label>
+                <ion-input [(ngModel)]="estabelecimento.estado" readonly></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item>
+                <ion-label position="floating">Cidade</ion-label>
+                <ion-input [(ngModel)]="estabelecimento.cidade" readonly></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label position="floating">Endereço</ion-label>
+                <ion-textarea [(ngModel)]="estabelecimento.rua"></ion-textarea>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label position="floating">Bairro</ion-label>
+                <ion-input [(ngModel)]="estabelecimento.bairro"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5">
+              <ion-item>
+                <ion-label position="floating">Número</ion-label>
+                <ion-input [(ngModel)]="estabelecimento.num"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size="7">
+              <ion-item>
+                <ion-label position="floating">CEP</ion-label>
+                <ion-input [(ngModel)]="estabelecimento.cep" readonly></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </div>
+      </div>
+    </ion-row>
+    <ion-button class="btn-login" color="primary" (click)="cadastrar(estabelecimento)" expand="block">Cadastrar</ion-button>
+  </ion-grid>
+</ion-content>

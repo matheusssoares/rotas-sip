@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Notícia</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <img src="{{news.noticia?.urlToImage}}">
+          <ion-card-header>
+            <ion-card-subtitle>{{news.noticia?.author}}</ion-card-subtitle>
+            <ion-card-title>{{news.noticia?.title}}</ion-card-title>
+          </ion-card-header>
+        
+          <ion-card-content>
+            {{news.noticia?.description}}
+            <br>
+          </ion-card-content>
+          <ion-item href="{{news.noticia?.url}}">
+            <ion-icon name="earth" slot="start"></ion-icon>
+            <ion-label>VISITAR SITE</ion-label>
+          </ion-item>        
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

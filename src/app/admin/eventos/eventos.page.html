@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Eventos</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-segment color="principal" [(ngModel)]="seg" (ionChange)="change($event)">
+      <ion-segment-button value="todos">
+        <ion-label>Todos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="pendentes">
+        <ion-label>Pendentes</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <ion-row>
+      <ion-col>
+        <img *ngIf="!itens" src="../../../assets/img/eventos.png" alt="lista de eventos">
+        <ion-searchbar placeholder="Pesquisar" (ionInput)="pesquisar($event)"></ion-searchbar>
+      </ion-col>      
+    </ion-row>
+    <ion-row *ngFor="let item of itens">
+      <ion-col>
+        <ion-card>
+          <img src="{{item?.image}}">
+          <ion-card-header>
+            <ion-card-subtitle>{{item?.data_consulta}}</ion-card-subtitle>
+            <ion-card-title class="ion-text-uppercase">{{item?.nome}}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            {{item?.descricao}}
+          </ion-card-content>
+          <ion-card-content>
+            <ion-row>
+              <ion-col size="6">
+                <ion-button (click)="editar(item)" color="tertiary" expand="block">
+                  <ion-icon slot="start" name="create"></ion-icon>
+                  Editar
+                </ion-button>
+              </ion-col>
+              <ion-col size="6">
+                <ion-button (click)="excluir(item)" color="danger" expand="block">
+                  <ion-icon slot="start" name="trash"></ion-icon>
+                  Excluir
+                </ion-button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-button (click)="compartilhar(item)" color="dark" expand="block">
+                  <ion-icon slot="start" name="share-social"></ion-icon>
+                  Compartilhar
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- fab placed to the bottom end -->
+  <ion-fab (click)="add()" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

@@ -24,3 +24,48 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+//font
+@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:400,700,900&display=swap");
+
+* {
+  font-family: "Roboto Slab", serif;
+}
+//novas cores
+.ion-color-principal {
+  --ion-color-base: var(--ion-color-principal);
+  --ion-color-base-rgb: var(--ion-color-principal-rgb);
+  --ion-color-contrast: var(--ion-color-principal-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-principal-contrast-rgb);
+  --ion-color-shade: var(--ion-color-principal-shade);
+  --ion-color-tint: var(--ion-color-principal-tint);
+}
+
+.option {
+  width: 100%;
+  height: auto;
+  background-color: #FFF;
+}
+
+.head {
+  background-color: rgb(243, 241, 241);
+  padding: 20px;
+}
+.width-100 {
+  width: 100%;
+}
+.logotipo {
+  width: 200px;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+  background: #FFF
+}
+.btn-login {
+  height: 40px;
+}
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

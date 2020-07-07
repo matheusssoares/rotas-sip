@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="principal">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Anúncios</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-segment color="principal" [(ngModel)]="anuncio_segmento" (ionChange)="eventos_change($event)">
+          <ion-segment-button value="todos">
+            <ion-label>Todos</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="meus">
+            <ion-label>Meus Anúncios</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button fill="clear" (click)="filtrar()" color="dark" expand="block">
+          Filtrar Por
+          <ion-icon slot="end" name="filter"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-searchbar placeholder="Pesquisar" (ionInput)="pesquisar($event)"></ion-searchbar>
+    </ion-row>
+    <!--começo de listagem de itens-->
+    <ion-row *ngFor="let item of itens">
+      <ion-card style="width: 100%;" (click)="visualizar(item)">
+        <img src="{{item?.image}}">
+        <ion-card-header>
+          <ion-card-subtitle style="font-size: 12px;">{{item?.autor}}</ion-card-subtitle>
+          <ion-card-title style="font-size: 15px;" class="ion-text-uppercase">{{item?.nome}}</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-row>
+
+    <ion-row *ngIf="itens.length == 0">
+      <ion-card>
+        <img src="../../../assets/img/search.png" alt="">
+        <p class="ion-text-center">Não há itens a serem mostrados</p>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+  <ion-fab (click)="add()" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="principal">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

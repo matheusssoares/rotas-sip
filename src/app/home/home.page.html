@@ -1,20 +1,25 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="ion-padding">
+    <img class="home-img" src="../../assets/img/rota-login.png" alt="" srcset="">
+  </div>
+  <div style="margin-top: -36px" class="ion-padding">
+    <h1 class="ion-text-center"><strong>Rotas SIP</strong></h1>
+  </div>
+  <div class="ion-padding">
+    <div style="margin-top: -30px" class="login">
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+        <ion-item>
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input type="email" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Senha</ion-label>
+          <ion-input type="password" formControlName="senha"></ion-input>
+        </ion-item>
+        <p style="color: #666; font-size: 15px;" class="ion-text-right">Esqueci minha senha</p>
+        <ion-button class="btn-login" type="submit" [disabled]="signupForm.invalid" color="dark" shape="round" expand="block">Entrar</ion-button>
+        <ion-button class="btn-login" (click)="criar_conta()" color="principal" shape="round" expand="block">Criar conta</ion-button>
+      </form>
+    </div>
   </div>
 </ion-content>

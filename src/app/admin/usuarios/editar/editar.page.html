@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Atualizar Usuário</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-row>
+          <ion-col>
+            <ion-card *ngIf="!dados.imagem" (click)="logo()">
+              <p class="ion-text-center">
+                <ion-icon style="font-size: 50px;" name="images"></ion-icon>
+              </p>
+              <h4 class="ion-text-center"> Adicionar Foto</h4>
+            </ion-card>
+
+            <ion-card *ngIf="dados.imagem" class="width-100">
+              <img id="logo" [src]="dados.imagem || 'https://image.flaticon.com/icons/svg/1999/1999101.svg'">
+              <ion-button fill="outline" class="btn-45" (click)="logo()" color="primary" expand="block">Alterar Foto
+              </ion-button>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Perfil</ion-label>
+          <ion-select [(ngModel)]="dados.perfil" placeholder="Selecione" okText="Selecionar" cancelText="Cancelar">
+            <ion-select-option value="administrador">Administrador</ion-select-option>
+            <ion-select-option value="comum">Usuário Comum</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Nome Completo</ion-label>
+          <ion-input type="text" [(ngModel)]="dados.firstName"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input readonly type="email" [(ngModel)]="dados.email"></ion-input>
+
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button shape="round" class="btn-45 bg-primary-outline" (click)="atualizar(dados)" color="primary"
+          expand="block">Atualizar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
