@@ -5,6 +5,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { LottieSplashScreen } from '@ionic-native/lottie-splash-screen/ngx';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import { LottieSplashScreen } from '@ionic-native/lottie-splash-screen/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  item: any = {};
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -21,8 +23,7 @@ export class AppComponent {
     private toastCtrl: ToastController,
     private menuCtrl: MenuController,
     private loadCtrl: LoadingController,
-    private router: Router,
-    private lottieSplashScreen: LottieSplashScreen
+    private serviceAuth: AuthService
   ) {
     this.initializeApp();
 
@@ -31,10 +32,22 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-      this.splashScreen.hide();      
+      this.splashScreen.hide();
+
+      this.afAuth.authState.subscribe((data) => {
+        this.serviceAuth.listar_dados_id(data.uid, 'usuarios', 'key').subscribe((date) => {
+          date.map((ret: any) => {
+            this.item = ret;
+          })
+        })
+      })
     });
 
 
+  }
+
+  toggle() {
+    this.menuCtrl.close('main-menu');
   }
 
   signOut() {
@@ -69,32 +82,6 @@ export class AppComponent {
     }).then((a) => {
       a.present();
     })
-
-  }
-
-  dashboard() {
-    this.router.navigateByUrl('admin/dashboard')
-  }
-  tipos() {
-    this.router.navigateByUrl('admin/tipos-estabelecimentos');
-  }
-  estabelecimentos() {
-    this.router.navigateByUrl('admin/estabelecimentos');
-  }
-  noticias() {
-    this.router.navigateByUrl('admin/noticias');
-  }
-  eventos() {
-    this.router.navigateByUrl('admin/eventos');
-  }
-  anuncios() {
-    this.router.navigateByUrl('admin/anuncios');
-  }
-  usuarios() {
-    this.router.navigateByUrl('admin/usuarios');
-  }
-  config() {
-    console.log('config');
 
   }
 }

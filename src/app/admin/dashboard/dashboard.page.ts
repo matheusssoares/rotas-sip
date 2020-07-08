@@ -13,7 +13,7 @@ export class DashboardPage implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.menuCtrl.enable(true, 'main-menu');
   }
 
 }

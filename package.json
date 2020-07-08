@@ -1,8 +1,8 @@
 {
   "name": "rota-sip",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "version": "0.0.8",
+  "author": "Matheus Soares",
+  "homepage": "https://matheusssoares.github.io/portfolio/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -20,7 +20,9 @@
     "@angular/forms": "~8.2.14",
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
+    "@angular/pwa": "^0.1000.1",
     "@angular/router": "~8.2.14",
+    "@angular/service-worker": "~8.2.14",
     "@ionic-native/call-number": "^5.22.0",
     "@ionic-native/camera": "^5.22.0",
     "@ionic-native/core": "^5.22.0-beta-1",
@@ -103,7 +105,7 @@
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
   },
-  "description": "An Ionic project",
+  "description": "Projeto de desenvolvimento para uma palestra sobre ionic",
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},

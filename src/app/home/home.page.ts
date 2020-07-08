@@ -27,8 +27,6 @@ export class HomePage implements OnInit{
   }
 
   ngOnInit(){
-    console.log('estamos aqui');
-    this.menuCtrl.enable(true);
     let emailRegex = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
 
     this.signupForm = this.formBuilder.group({
@@ -41,10 +39,6 @@ export class HomePage implements OnInit{
     
   }
 
-  /* onSubmit() {
-    console.log('submit');
-    
-  } */
 
   autenticar() {
     this.auth.authState.subscribe(data => {
@@ -57,6 +51,7 @@ export class HomePage implements OnInit{
           this.serviceAuth.listar_dados_id(data.uid, 'usuarios', 'key').subscribe((date) => {
             date.map((ret: any) => {
               if (ret.perfil == 'administrador') {
+                /* this.menuCtrl.enable(true, 'main-menu'); */
                 this.route.navigateByUrl('perfil');
               } else {
                 this.navCtrl.navigateRoot('cliente/dashboard');

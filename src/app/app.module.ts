@@ -28,6 +28,8 @@ import { Network } from '@ionic-native/network/ngx';
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 import { LottieSplashScreen } from '@ionic-native/lottie-splash-screen/ngx';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 registerLocaleData(ptBr);
 
 export const FirebaseConfig = {
@@ -52,7 +54,8 @@ export const FirebaseConfig = {
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
-    HttpClientModule 
+    HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }) 
   ],
   providers: [
     Geolocation,

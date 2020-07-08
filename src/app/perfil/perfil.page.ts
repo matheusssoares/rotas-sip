@@ -21,6 +21,7 @@ export class PerfilPage implements OnInit {
   ngOnInit() {
   }
   admin(){
+    this.menuCtrl.enable(true, 'main-menu');
     this.navCtrl.navigateRoot('admin/dashboard');
   }
   comum(){
